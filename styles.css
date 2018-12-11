@@ -1,0 +1,29 @@
+#board{
+    /* max-width: 640px;
+    min-height: 320px; */
+    /* margin: auto; */
+    text-align: center;
+}
+.square {
+    margin-bottom: 4px;
+    background-color: #fff;
+    border: 2px solid #000;
+    width: 185px;
+    height: 185px;
+    outline: none; /* remove the blue line from clicking our squares */
+    font-size: 60px;
+}
+.square:hover{
+    background-color: rgb(177, 198, 255);
+}
+#title {
+    font-size: 60px;
+    text-align: center;
+}
+#message {
+    font-size: 40px;
+    text-align: center;
+}
+.winning-square {
+background-color: green;
+}
