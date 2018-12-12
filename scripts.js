@@ -17,7 +17,11 @@ const winningCombos = [
     ['A1','B2', 'C3'],
     ['A3','B2', 'C1'],
 ]
+let board = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
 let gameOn = true;
+let player1Score = 0
+let player2Score = 0
+
 
 // 1. Set up board --- Check
 // 2. User should be able to click on a button --- Check
@@ -53,17 +57,27 @@ for (let i = 0; i < squares.length; i++){
                 // it's not taken, so see whos turn it is
                 if(whosTurn === 1){
                     this.innerHTML = "X"
-                    whosTurn = 2; // update JS
                     // Update the DOM
                     document.getElementById('message').innerHTML = "It's O's turn"
                     player1Squares.push(this.id)
+                    index = board.indexOf(this.id)
+                    board.splice(index, 1)
+                    console.log(board)
+                    whosTurn = 2; // update JS
                     checkWin(player1Squares,1)
-                } else {
-                    this.innerHTML = "0"
-                    whosTurn = 1;
-                    document.getElementById('message').innerHTML = "It's X's turn"
-                    player2Squares.push(this.id)
-                    checkWin(player2Squares,2)
+                } if(whosTurn === 2) {
+                    let rand = board[Math.floor(Math.random() * board.length)];
+                    index = board.indexOf(rand)
+                    board.splice(index, 1)
+                    console.log(board)
+                    if (!player1Squares.includes(rand) && !player2Squares.includes(rand)){
+                        player2Squares.push(rand)
+                        squares[rand].innerHTML = "0"
+                        whosTurn = 1;
+                        document.getElementById('message').innerHTML = "It's X's turn"
+                        // player2Squares.push(this.id)
+                        checkWin(player2Squares,2)
+                    }
                 }
             } else {
                 document.getElementById('message').innerHTML = "Sorry that square is taken."
@@ -111,18 +125,24 @@ function endGame(winningCombo, whoWon){
         let winningSquare = winningCombo[i]
         let squareElem = document.getElementById(winningSquare);
         squareElem.className += " winning-square"
+        document.querySelector('.replay').style.visibility = "visible"
     }
 }
 function reset(){
+    document.querySelector('.replay').style.visibility = "hidden"
     player1Squares = []
     player2Squares = []
     let squares = document.getElementsByClassName('square')
     for (let i = 0; i < squares.length; i++){
         squares[i].textContent = '-'
-        squares[i].style.backgroundColor = 'white'
-        document.getElementById('message').innerHTML = "It's X's turn"
+        squares[i].classList.remove('winning-square')
+        document.getElementById('message').innerHTML = "It's X's Turn"
         whosTurn = 1
+        board = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
         gameOn = true;
         
     }
+}
+function quit(){
+    gameOn = false
 }

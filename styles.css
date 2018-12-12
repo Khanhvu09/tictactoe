@@ -1,8 +1,12 @@
+body {
+    background-color: rgb(108, 107, 107);
+}
 #board{
     /* max-width: 640px;
     min-height: 320px; */
     /* margin: auto; */
     text-align: center;
+
 }
 .square {
     margin-bottom: 4px;
@@ -26,4 +30,33 @@
 }
 .winning-square {
 background-color: green;
+}
+.replay {
+    display: inline-block;
+    position: fixed;
+    border: 1px solid black;
+    padding: 50px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    visibility: hidden;
+    margin-left: 773px;
+    margin-top: -360px;
+    opacity: 0.8;
+}
+#replay {
+    font-size: 40px;
+    border-radius: 20px;
+    background-color: #fff;
+    outline: none;
+    border: 1px solid black;
+    cursor: pointer;
+}
+#quit {
+    font-size: 40px;
+    border-radius: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    outline: none;
+    border: 1px solid black;
+    cursor: pointer;
 }
